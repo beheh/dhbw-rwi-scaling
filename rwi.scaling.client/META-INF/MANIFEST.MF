@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ScalingClient
+Bundle-SymbolicName: rwi.scaling.client
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.json;version="1.0.0",
+ org.osgi.framework;version="1.6.0",
+ rwi.scaling.common.interfaces
+Service-Component: OSGI-INF/component.xml
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: rwi.scaling.client.ScalingClientActivator

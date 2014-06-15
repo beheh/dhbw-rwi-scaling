@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Common
+Bundle-SymbolicName: rwi.scaling.common
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: rwi.scaling.common.interfaces

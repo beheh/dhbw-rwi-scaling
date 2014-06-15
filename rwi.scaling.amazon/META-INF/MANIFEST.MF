@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Amazon
+Bundle-SymbolicName: rwi.scaling.amazon
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.osgi.framework;version="1.6.0",
+ rwi.scaling.common.interfaces
+Service-Component: OSGI-INF/component.xml
+Bundle-Activator: rwi.scaling.activators.AmazonActivator
+Require-Bundle: com.amazonaws
