@@ -707,4 +707,5 @@ Export-Package: com.amazonaws;
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.apache.commons.logging,
  org.apache.httpcomponents.httpclient,
- com.fasterxml.jackson.databind
+ com.fasterxml.jackson.databind,
+ org.joda.time

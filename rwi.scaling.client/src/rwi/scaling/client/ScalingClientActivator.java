@@ -20,7 +20,7 @@ public class ScalingClientActivator implements BundleActivator {
 		if(reference != null) {
 			service = (IInstanceService) context.getService(reference);
 			System.out.println("Using " + service.getProviderName() + " as provider for system scaling");
-			ControlThread thread = new ControlThread(service, new URL("http://localhost:8080/info"));
+			ControlThread thread = new ControlThread(service, new URL("http://54.75.229.183:8080/info"));
 			thread.start();
 		}
 		else {

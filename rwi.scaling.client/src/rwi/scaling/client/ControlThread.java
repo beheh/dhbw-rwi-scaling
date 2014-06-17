@@ -96,10 +96,13 @@ public class ControlThread extends Thread {
 				int serverCount = getServerCount(rootUrl);
 				if(lastServerCount != serverCount) {
 					lastServerCount = serverCount;
-					if(lastServerCount < serverCount) {
+					if(serverCount > lastServerCount) {
 						int difference = serverCount - lastServerCount;
 						requested = Math.max(0, requested - difference);
 						System.out.println("Detected " + difference + " additional servers in system");
+					}
+					else {
+						System.out.println("Detected system downscaling");
 					}
 				}
 				if(requested == 0) {
@@ -115,7 +118,7 @@ public class ControlThread extends Thread {
 							System.out.println("Requesting single new instance from scaling instance service");
 						}
 						requested = i;
-						// service.requestInstances(i);
+						service.requestInstances(i);
 					}
 				}
 				else {

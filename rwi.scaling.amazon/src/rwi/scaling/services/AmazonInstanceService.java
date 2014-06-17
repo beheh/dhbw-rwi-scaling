@@ -24,7 +24,6 @@ import rwi.scaling.common.interfaces.IInstanceService;
 public class AmazonInstanceService implements IInstanceService {
 
 	private AmazonEC2 ec2 = null;
-	private String subnetId = "123";
 	private Collection<String> securityGroups = new ArrayList<>();
 
 	public AmazonInstanceService() {
@@ -38,6 +37,7 @@ public class AmazonInstanceService implements IInstanceService {
 		ec2 = new AmazonEC2Client(credentials);
 		ec2.setRegion(Region.getRegion(Regions.EU_WEST_1));
 		securityGroups.add("rwi");
+		securityGroups.add("ssh");
 		System.out.println("Initialized AmazonInstanceService");
 	}
 
@@ -48,16 +48,10 @@ public class AmazonInstanceService implements IInstanceService {
 
 	@Override
 	public boolean requestInstances(int instanceCount) {
-		RunInstancesRequest request = new RunInstancesRequest("id", instanceCount, instanceCount);
-		
-		// setup vpc
-		request.setSubnetId(subnetId);
-		
+		RunInstancesRequest request = new RunInstancesRequest("ami-f95c958e", instanceCount, instanceCount);
+				
 		// setup firewall
 		request.setSecurityGroups(securityGroups);
-		
-		// setup additional info (server ip)
-		request.setAdditionalInfo(null);
 		
 		// launch instance
 		System.out.println("Sending RunInstanceRequest to Amazon... ");
@@ -69,7 +63,7 @@ public class AmazonInstanceService implements IInstanceService {
 		for(Instance instance : instances) {
 			i++;
 			CreateTagsRequest createTagsRequest = new CreateTagsRequest();
-			createTagsRequest.withResources(instance.getInstanceId()).withTags(new Tag("Name", "rwi-instance-" + i));
+			createTagsRequest.withResources(instance.getInstanceId()).withTags(new Tag("Name", "rwi-node-" + i));
 			ec2.createTags(createTagsRequest);
 		}
 
